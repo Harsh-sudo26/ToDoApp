@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'homescreen.dart';
+import 'package:todoapp/constant/image_const.dart';
+import 'package:todoapp/routes/routes.dart';
 import 'package:todoapp/widget/custombutton.dart';
 
 class Splash extends StatefulWidget {
@@ -21,7 +22,7 @@ class _SplashState extends State<Splash> {
             Padding(
               padding: const EdgeInsets.all(17.0),
               child: Image.asset(
-                'asset/images/book.png',
+                splashbook,
                 height: 450,
                 width: double.infinity,
               ),
@@ -83,22 +84,25 @@ class _SplashState extends State<Splash> {
                       ),
                     ),
                     const SizedBox(height: 25),
+
+                    //get startded button
                     Custombutton(
-                      onPressed: () => Navigator.pushReplacement(
+                      onPressed: () => Navigator.pushNamedAndRemoveUntil(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const Homescreen(),
-                        ),
+                        Routes.home,
+                        (route) => false,
                       ),
                       color: const Color.fromARGB(255, 2, 250, 130),
                     ),
                     SizedBox(height: 20),
-                    Text(
-                      "Get Started",
-                      style: GoogleFonts.bebasNeue(
-                        color: const Color.fromARGB(255, 235, 232, 232),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                    InkWell(
+                      child: Text(
+                        "Get Started",
+                        style: GoogleFonts.bebasNeue(
+                          color: const Color.fromARGB(255, 235, 232, 232),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

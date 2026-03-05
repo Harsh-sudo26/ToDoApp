@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screen/splash.dart';
+import 'package:todoapp/routes/app_pages.dart';
+import 'package:todoapp/routes/routes.dart';
 
 
 
@@ -14,11 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: Routes.splash,
+      routes: AppPages.routing,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
 
-     home: Splash(),
+     
     );
   }
 }
