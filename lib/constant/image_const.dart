@@ -1,1 +1,0 @@
-String splashbook = 'asset/images/book.png';

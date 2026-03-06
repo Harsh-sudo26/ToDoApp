@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todoapp/constant/color/colors.dart';
+
+
 
 class Custombutton extends StatelessWidget {
   final String text;
@@ -7,13 +10,14 @@ class Custombutton extends StatelessWidget {
   final Color color;
   const Custombutton({
     super.key,
-    this.text = 'Get Started',
+    required this.text,
     required this.onPressed,
     required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
+   
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -43,6 +47,17 @@ class Custombutton extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+class custombutton2 extends StatelessWidget {
+  const custombutton2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height:MediaQuery.of(context).size.width * 0.1, 
+      color: Appcolor.lghtwhite,
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todoapp/constant/image_const.dart';
+import 'package:todoapp/constant/image/image_const.dart';
 import 'package:todoapp/routes/routes.dart';
 import 'package:todoapp/widget/custombutton.dart';
 
@@ -12,6 +12,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +24,13 @@ class _SplashState extends State<Splash> {
               padding: const EdgeInsets.all(17.0),
               child: Image.asset(
                 splashbook,
-                height: 450,
+                height: 400,
                 width: double.infinity,
               ),
             ),
-            SizedBox(height: 10),
+            
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.9,
+              height: MediaQuery.of(context).size.height * 0.5,
               width: MediaQuery.of(context).size.width,
 
               child: Center(
@@ -92,18 +93,12 @@ class _SplashState extends State<Splash> {
                         Routes.home,
                         (route) => false,
                       ),
-                      color: const Color.fromARGB(255, 2, 250, 130),
+                      color: const Color.fromARGB(255, 2, 250, 130), text: 'Get Started',
                     ),
                     SizedBox(height: 20),
                     InkWell(
-                      child: Text(
-                        "Get Started",
-                        style: GoogleFonts.bebasNeue(
-                          color: const Color.fromARGB(255, 235, 232, 232),
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      onTap: () => Navigator.pushNamed(context, Routes.Signup),
+                      
                     ),
                   ],
                 ),
