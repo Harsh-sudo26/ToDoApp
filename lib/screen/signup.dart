@@ -85,14 +85,30 @@ class Signup extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: Custombutton2(
                           text: Text(
-                            "Google",
+                            "Apple",
                             style: GoogleFonts.outfit(
                               color: Appcolor.textwhite,
                             ),
                           ),
-                          image: Image.asset(ios, height: 10),
+                          image: Image.asset(ios, height: 5),
                         ),
                       ),
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Already have an account? ",
+                        style: TextStyle(color: Appcolor.textwhite),
+                      ),
+                      SizedBox(width: 8,),
+                      InkWell(
+                        onTap: () {
+                          
+                        },
+                        child: Text("Log In",style: TextStyle(color: Appcolor.textwhite),))
                     ],
                   ),
                 ],

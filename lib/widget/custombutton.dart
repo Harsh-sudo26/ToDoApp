@@ -65,6 +65,7 @@ class Custombutton2 extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        width: MediaQuery.of(context).size.width * 0.30,
         height: 45,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
@@ -73,6 +74,7 @@ class Custombutton2 extends StatelessWidget {
           border: Border.all(color: Colors.white24),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 20, width: 20, child: image),
