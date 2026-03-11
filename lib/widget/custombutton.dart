@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todoapp/constant/color/colors.dart';
-
-
+import 'package:todoapp/constant/image/image_const.dart';
 
 class Custombutton extends StatelessWidget {
   final String text;
@@ -17,11 +16,9 @@ class Custombutton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return InkWell(
       onTap: onPressed,
       child: Container(
-        
         height: 45,
         width: MediaQuery.of(context).size.width * 0.5,
         decoration: BoxDecoration(
@@ -30,8 +27,8 @@ class Custombutton extends StatelessWidget {
               color: Colors.greenAccent.withValues(alpha: 0.5),
               spreadRadius: 2,
               blurRadius: 7,
-              offset: const Offset(0, 3), 
-            )
+              offset: const Offset(0, 3),
+            ),
           ],
           color: color,
           borderRadius: BorderRadius.circular(10),
@@ -50,14 +47,40 @@ class Custombutton extends StatelessWidget {
     );
   }
 }
-class custombutton2 extends StatelessWidget {
-  const custombutton2({super.key});
+
+class Custombutton2 extends StatelessWidget {
+  final Widget text;
+  final Widget image;
+  final VoidCallback? onTap;
+
+  const Custombutton2({
+    super.key,
+    required this.text,
+    required this.image,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height:MediaQuery.of(context).size.width * 0.1, 
-      color: Appcolor.lghtwhite,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 45,
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          color: Appcolor.button2,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.white24),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(height: 20, width: 20, child: image),
+            const SizedBox(width: 10),
+            text,
+          ],
+        ),
+      ),
     );
   }
 }

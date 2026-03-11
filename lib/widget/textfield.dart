@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/constant/color/colors.dart';
 
 class Textfield extends StatelessWidget {
-  Textfield({
+  const Textfield({
   super.key,
   required this.icon,
   required this.hinttext,

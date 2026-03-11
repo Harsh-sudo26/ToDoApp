@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todoapp/constant/color/colors.dart';
 import 'package:todoapp/constant/image/image_const.dart';
 import 'package:todoapp/widget/custombutton.dart';
@@ -34,7 +35,7 @@ class Signup extends StatelessWidget {
                     style: TextStyle(color: Appcolor.lghtwhite),
                   ),
                   SizedBox(height: 25),
-        
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Column(
@@ -57,15 +58,46 @@ class Signup extends StatelessWidget {
                       ],
                     ),
                   ),
-                   
-                  SizedBox(height: 20,),
-                  Custombutton(onPressed: () {
-                  }, color: Appcolor.buttoncolor, text: 'Create Account',),
-                  custombutton2(),
+
+                  SizedBox(height: 20),
+                  Custombutton(
+                    onPressed: () {},
+                    color: Appcolor.buttoncolor,
+                    text: 'Create Account',
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Custombutton2(
+                          text: Text(
+                            "Google",
+                            style: GoogleFonts.outfit(
+                              color: Appcolor.textwhite,
+                            ),
+                          ),
+                          image: Image.asset(google, height: 10),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Custombutton2(
+                          text: Text(
+                            "Google",
+                            style: GoogleFonts.outfit(
+                              color: Appcolor.textwhite,
+                            ),
+                          ),
+                          image: Image.asset(ios, height: 10),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-           
           ],
         ),
       ),
