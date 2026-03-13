@@ -10,6 +10,6 @@ class AppPages {
     Routes.splash: (context) => const Splash(),
     Routes.home: (context) => const Homescreen(),
     Routes.login: (context) => const Login(),
-    Routes.Signup: (context) => const Signup(),
+    Routes.signup: (context) => const Signup(),
   };
 }

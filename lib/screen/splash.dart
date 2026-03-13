@@ -94,7 +94,7 @@ class _SplashState extends State<Splash> {
                   SizedBox(height: 20),
 
                   InkWell(
-                    onTap: () => Navigator.pushNamed(context, Routes.Signup),
+                    onTap: () => Navigator.pushNamed(context, Routes.signup),
                     child: Text(
                       "Sign Up",
                       style: GoogleFonts.bebasNeue(

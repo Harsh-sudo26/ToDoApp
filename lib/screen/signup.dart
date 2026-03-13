@@ -4,7 +4,7 @@ import 'package:todoapp/constant/color/colors.dart';
 import 'package:todoapp/constant/image/image_const.dart';
 import 'package:todoapp/widget/custombutton.dart';
 import 'package:todoapp/widget/textfield.dart';
-
+import 'package:todoapp/routes/routes.dart';
 class Signup extends StatelessWidget {
   const Signup({super.key});
 
@@ -22,7 +22,7 @@ class Signup extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Image.asset(tick, height: 70),
                   ),
                   Text(
@@ -37,7 +37,7 @@ class Signup extends StatelessWidget {
                   SizedBox(height: 25),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
                         Textfield(
@@ -61,16 +61,19 @@ class Signup extends StatelessWidget {
 
                   SizedBox(height: 20),
                   Custombutton(
-                    onPressed: () {},
+                    onPressed: () =>
+
+                      Navigator.pushNamed(context, Routes.home),
+                   
                     color: Appcolor.buttoncolor,
                     text: 'Create Account',
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Custombutton2(
                           text: Text(
                             "Google",
@@ -82,7 +85,7 @@ class Signup extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Custombutton2(
                           text: Text(
                             "Apple",
@@ -106,7 +109,7 @@ class Signup extends StatelessWidget {
                       SizedBox(width: 8,),
                       InkWell(
                         onTap: () {
-                          
+                          Navigator.pushNamed(context, Routes.login);
                         },
                         child: Text("Log In",style: TextStyle(color: Appcolor.textwhite),))
                     ],

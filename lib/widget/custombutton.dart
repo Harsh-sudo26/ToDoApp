@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todoapp/constant/color/colors.dart';
-import 'package:todoapp/constant/image/image_const.dart';
 
 class Custombutton extends StatelessWidget {
   final String text;
@@ -78,7 +77,7 @@ class Custombutton2 extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 20, width: 20, child: image),
-            const SizedBox(width: 10),
+           
             text,
           ],
         ),
