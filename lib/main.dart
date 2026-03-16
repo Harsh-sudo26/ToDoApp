@@ -5,7 +5,7 @@ import 'package:todoapp/routes/routes.dart';
 
 
 void main() {
-  runApp( MyApp(),
+  runApp( const MyApp(),
   );
 }
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: Routes.splash,
-      routes: AppPages.routing,
+      onGenerateRoute: Routes.generateRoute,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),

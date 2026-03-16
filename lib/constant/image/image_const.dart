@@ -1,4 +1,4 @@
-String splashbook = 'asset/images/book.png';
-String tick = 'asset/images/tick.png';
-String google = 'asset/images/google.png';
-String ios = 'asset/images/apple.png';
+const String splashbook = 'asset/images/book.png';
+const String tick = 'asset/images/tick.png';
+const String google = 'asset/images/google.png';
+const String ios = 'asset/images/apple.png';

@@ -11,7 +11,7 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Column(
           children: [
             Container(
@@ -23,18 +23,18 @@ class Signup extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Image.asset(tick, height: 70),
+                    child: RepaintBoundary(child: Image.asset(tick, height: 70)),
                   ),
-                  Text(
+                 const Text(
                     "Join Us today",
                     style: TextStyle(color: Appcolor.textwhite, fontSize: 28),
                   ),
-                  Text(
+                const  Text(
                     '''Start managing your tasks efficiently and
                       boost your productivity.''',
                     style: TextStyle(color: Appcolor.lghtwhite),
                   ),
-                  SizedBox(height: 25),
+                const  SizedBox(height: 25),
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -44,22 +44,25 @@ class Signup extends StatelessWidget {
                           icon: Icon(Icons.person, color: Appcolor.textwhite),
                           hinttext: 'Name',
                           rowtext: 'Name',
+                           controller: TextEditingController(),
                         ),
                         Textfield(
                           icon: Icon(Icons.email, color: Appcolor.textwhite),
                           hinttext: 'name@example.com',
                           rowtext: 'Email Address',
+                           controller: TextEditingController(),
                         ),
                         Textfield(
                           icon: Icon(Icons.password, color: Appcolor.textwhite),
                           hinttext: 'Password',
                           rowtext: 'Password',
+                          controller: TextEditingController(),
                         ),
                       ],
                     ),
                   ),
 
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Custombutton(
                     onPressed: () =>
 
@@ -68,7 +71,7 @@ class Signup extends StatelessWidget {
                     color: Appcolor.buttoncolor,
                     text: 'Create Account',
                   ),
-                  SizedBox(height: 25),
+                const  SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -81,7 +84,7 @@ class Signup extends StatelessWidget {
                               color: Appcolor.textwhite,
                             ),
                           ),
-                          image: Image.asset(google, height: 10),
+                          image: RepaintBoundary(child: Image.asset(google, height: 10)),
                         ),
                       ),
                       Padding(
@@ -93,25 +96,25 @@ class Signup extends StatelessWidget {
                               color: Appcolor.textwhite,
                             ),
                           ),
-                          image: Image.asset(ios, height: 5),
+                          image: RepaintBoundary(child: Image.asset(ios, height: 5)),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 25),
+                const  SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                     const Text(
                         "Already have an account? ",
                         style: TextStyle(color: Appcolor.textwhite),
                       ),
-                      SizedBox(width: 8,),
+                   const  SizedBox(width: 8,),
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, Routes.login);
                         },
-                        child: Text("Log In",style: TextStyle(color: Appcolor.textwhite),))
+                        child: const Text("Log In",style: TextStyle(color: Appcolor.textwhite),))
                     ],
                   ),
                 ],
