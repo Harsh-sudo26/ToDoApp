@@ -24,13 +24,15 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
-    // Precache splash image
-    precacheImage(const AssetImage(splashbook), context);
+    // Schedule image precache after first frame to avoid blocking
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      precacheImage(const AssetImage(splashbook), context);
+    });
 
-    // Cache text styles
+    // Initialize text styles
     titleStyle = GoogleFonts.oswald(
       shadows: const [
-        Shadow(offset: Offset(3, 3), blurRadius: 6, color: Colors.greenAccent),
+        Shadow(offset: Offset(2, 2), blurRadius: 4, color: Colors.greenAccent),
       ],
       color: Colors.white,
       fontSize: 30,
@@ -39,7 +41,7 @@ class _SplashState extends State<Splash> {
 
     subtitleStyle = GoogleFonts.poppins(
       shadows: const [
-        Shadow(offset: Offset(3, 3), blurRadius: 6, color: Colors.greenAccent),
+        Shadow(offset: Offset(2, 2), blurRadius: 4, color: Colors.greenAccent),
       ],
       color: const Color.fromARGB(255, 2, 255, 10),
       fontSize: 25,
@@ -58,8 +60,8 @@ class _SplashState extends State<Splash> {
       shadows: [
         Shadow(
           color: Colors.greenAccent.withOpacity(0.8),
-          blurRadius: 7,
-          offset: const Offset(0, 3),
+          blurRadius: 5,
+          offset: const Offset(0, 2),
         ),
       ],
     );
@@ -67,54 +69,74 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
+    // Use LayoutBuilder to prevent layout overflow
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(17.0),
-                child: Image.asset(
-                  splashbook,
-                  height: 400,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final double screenHeight = constraints.maxHeight;
+            return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: screenHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Splash Image
+                      Padding(
+                        padding: const EdgeInsets.all(17.0),
+                        child: Image.asset(
+                          splashbook,
+                          height: screenHeight * 0.45,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      // Texts
+                      Text('Stay Organized', style: titleStyle),
+                      Text('Stay Focused', style: subtitleStyle),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Text(
+                          "Effortlessly manage your daily tasks, set priorities, and achieve your goals with our clean and simple interface.",
+                          textAlign: TextAlign.center,
+                          style: bodyStyle,
+                        ),
+                      ),
+                      const Spacer(),
+                      // Get Started Button
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Custombutton(
+                          onPressed: () => Navigator.pushAndRemoveUntil(
+                            context,
+                            SmoothPageRoute(page: const Homescreen()),
+                            (route) => false,
+                          ),
+                          color: const Color.fromARGB(255, 2, 250, 130),
+                          text: 'Get Started',
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Sign Up Text
+                      InkWell(
+                        onTap: () => Navigator.push(
+                          context,
+                          SmoothPageRoute(page: const Signup()),
+                        ),
+                        child: Text("Sign Up", style: signupStyle),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
-              Text('Stay Organized', style: titleStyle),
-              Text('Stay Focused', style: subtitleStyle),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Text(
-                  "Effortlessly manage your daily tasks, set priorities, and achieve your goals with our clean and simple interface.",
-                  textAlign: TextAlign.center,
-                  style: bodyStyle,
-                ),
-              ),
-              const SizedBox(height: 25),
-              Custombutton(
-                onPressed: () => Navigator.pushAndRemoveUntil(
-                  context,
-                  SmoothPageRoute(page: const Homescreen()),
-                  (route) => false,
-                ),
-                color: const Color.fromARGB(255, 2, 250, 130),
-                text: 'Get Started',
-              ),
-              const SizedBox(height: 20),
-              InkWell(
-                onTap: () => Navigator.push(
-                  context,
-                  SmoothPageRoute(page: const Signup()),
-                ),
-                child: Text("Sign Up", style: signupStyle),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
