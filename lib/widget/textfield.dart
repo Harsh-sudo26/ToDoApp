@@ -22,7 +22,6 @@ class Textfield extends StatelessWidget {
       child: TextFormField(
         style: TextStyle(color: Appcolor.lghtwhite),
         decoration: InputDecoration(
-          
           prefixIcon: icon,
           hintText: hinttext,
           labelText: rowtext,
