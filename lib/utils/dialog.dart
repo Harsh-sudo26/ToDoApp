@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoapp/provider/add_task_addprovider.dart';
 
-void showMyDialog(BuildContext context) {
+void showAddTaskDialog(BuildContext context) {
+  final controller = TextEditingController();
+
   showDialog(
     context: context,
-    barrierDismissible: true, // User can tap outside to dismiss
-    builder: (BuildContext context) {
+    builder: (dialogContext) {
       return AlertDialog(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        title: const Text(
-          'Add New Task',
-          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-        ),
+        title: const Text("Add Task"),
         content: TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-          ),
+          controller: controller,
+          decoration: const InputDecoration(hintText: "Enter task"),
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text("cancel"),
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text("Cancel"),
           ),
           ElevatedButton(
-            onPressed: () {},
-            child: const Text(
-              "Ok",
-              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-            ),
+            style: ButtonStyle(animationDuration: Duration(seconds: 2)),
+            onPressed: () {
+              final text = controller.text.trim();
+              if (text.isNotEmpty) {
+                Provider.of<TaskProvider>(context, listen: false).addTask(text);
+                Navigator.of(dialogContext).pop();
+              }
+            },
+            child: const Text("Add"),
           ),
         ],
       );
