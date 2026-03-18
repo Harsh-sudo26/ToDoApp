@@ -74,12 +74,12 @@ class Homescreen extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.blue,
+                           gradient: const LinearGradient(colors: [const Color.fromARGB(198, 46, 82, 211),const Color.fromARGB(255, 103, 69, 205)])
                           ),
                           child: ListTile(
                             title: Text(
                               tasks[index],
-                              style: const TextStyle(color: Appcolor.textwhite),
+                              style: const TextStyle(color: Appcolor.textwhite,fontWeight: FontWeight.bold),
                             ),
                             trailing: IconButton(
                               onPressed: () {
@@ -87,7 +87,7 @@ class Homescreen extends StatelessWidget {
                               },
                               icon: const Icon(
                                 Icons.delete,
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 220, 59, 59),
                               ),
                             ),
                           ),
