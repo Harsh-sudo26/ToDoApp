@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/provider/add_task_addprovider.dart';
-
 void showAddTaskDialog(BuildContext context) {
   final controller = TextEditingController();
 
@@ -13,6 +12,7 @@ void showAddTaskDialog(BuildContext context) {
         content: TextField(
           controller: controller,
           decoration: const InputDecoration(hintText: "Enter task"),
+          autofocus: true,
         ),
         actions: [
           TextButton(
@@ -20,12 +20,12 @@ void showAddTaskDialog(BuildContext context) {
             child: const Text("Cancel"),
           ),
           ElevatedButton(
-            style: ButtonStyle(animationDuration: Duration(seconds: 2)),
             onPressed: () {
               final text = controller.text.trim();
               if (text.isNotEmpty) {
                 Provider.of<TaskProvider>(context, listen: false).addTask(text);
-                Navigator.of(dialogContext).pop();
+               
+                Future.microtask(() => Navigator.of(dialogContext).pop());
               }
             },
             child: const Text("Add"),
