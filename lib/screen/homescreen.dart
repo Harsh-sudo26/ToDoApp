@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/constant/color/colors.dart';
-import 'package:todoapp/constant/image/image_const.dart';
+import 'package:todoapp/constant/image/image_const.dart'; // for 'google'
 import 'package:todoapp/provider/add_task_addprovider.dart';
 import 'package:todoapp/utils/dialog.dart';
+import 'package:todoapp/widget/progresscard.dart';
 
-class Homescreen extends StatelessWidget {
+class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
+  @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.black,
           elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 2.0,right: 2),
-            child: CircleAvatar(foregroundImage: AssetImage(google)),
+          leading: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              foregroundImage: AssetImage(google), // Google image
+              backgroundColor: Colors.transparent,
+            ),
           ),
           title: const Text(
             "My Task",
@@ -25,17 +35,18 @@ class Homescreen extends StatelessWidget {
               color: Appcolor.textwhite,
               fontSize: 20,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Roboto', 
             ),
           ),
           centerTitle: true,
-          actions: [
+          actions: const [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search, color: Colors.white),
+              onPressed: null,
+              icon: Icon(Icons.search, color: Colors.white),
             ),
           ],
         ),
-        backgroundColor: Colors.black,
+
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.greenAccent,
           shape: const CircleBorder(),
@@ -43,62 +54,111 @@ class Homescreen extends StatelessWidget {
           onPressed: () => showAddTaskDialog(context),
           child: const Icon(Icons.add),
         ),
-        body: Column(
-          children: [
-            // Optional header widget
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                "Tasks Overview",
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
-            ),
 
-            Expanded(
-              child: Consumer<TaskProvider>(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  "Tasks Overview",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Roboto', // optional Google font
+                  ),
+                ),
+              ),
+
+              // Progress Card
+              Consumer<TaskProvider>(
                 builder: (context, taskProvider, child) {
-                  final tasks = taskProvider.tasks;
-                  if (tasks.isEmpty) {
-                    return const Center(
-                      child: Text(
-                        "No task yet",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    );
-                  }
-                  return ListView.builder(
-                    itemCount: tasks.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                  final total = taskProvider.tasks.length;
+                  final completed =
+                      taskProvider.tasks.where((t) => t.isdone).length;
+                  return ProgressCard(completed: completed, total: total);
+                },
+              ),
+
+              const SizedBox(height: 10),
+
+              // Task list
+              Expanded(
+                child: Consumer<TaskProvider>(
+                  builder: (context, taskProvider, child) {
+                    final tasks = taskProvider.tasks;
+
+                    if (tasks.isEmpty) {
+                      return const Center(
+                        child: Text(
+                          "No task yet",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Roboto', // optional Google font
+                          ),
+                        ),
+                      );
+                    }
+
+                    return ListView.separated(
+                      itemCount: tasks.length,
+                      separatorBuilder: (_, _) => const SizedBox(height: 8),
+                      itemBuilder: (context, index) {
+                        final task = tasks[index];
+                        return Container(
+                          key: ValueKey(task.title),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                           gradient: const LinearGradient(colors: [const Color.fromARGB(198, 46, 82, 211),const Color.fromARGB(255, 103, 69, 205)])
+                            gradient: const LinearGradient(
+                              colors: [
+                                Color.fromARGB(198, 46, 82, 211),
+                                Color.fromARGB(255, 103, 69, 205),
+                              ],
+                            ),
                           ),
                           child: ListTile(
+                            leading: Checkbox(
+                              checkColor: Colors.white,
+                              fillColor:
+                                  WidgetStateProperty.resolveWith<Color>(
+                                (states) {
+                                  if (states.contains(WidgetState.selected)) {
+                                    return Colors.green;
+                                  }
+                                  return Colors.white;
+                                },
+                              ),
+                              value: task.isdone,
+                              onChanged: (_) => taskProvider.toggleTask(index),
+                            ),
                             title: Text(
-                              tasks[index],
-                              style: const TextStyle(color: Appcolor.textwhite,fontWeight: FontWeight.bold),
+                              task.title,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Roboto', // optional Google font
+                                decoration: task.isdone
+                                    ? TextDecoration.lineThrough
+                                    : null,
+                              ),
                             ),
                             trailing: IconButton(
-                              onPressed: () {
-                                taskProvider.removeTask(index);
-                              },
+                              onPressed: () => taskProvider.removeTask(index),
                               icon: const Icon(
                                 Icons.delete,
                                 color: Color.fromARGB(255, 220, 59, 59),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  );
-                },
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

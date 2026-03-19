@@ -22,32 +22,27 @@ class Signup extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Logo / Tick
-                RepaintBoundary(
-                  child: Image.asset(
-                    tick,
-                    height: 70,
-                  ),
-                ),
+                RepaintBoundary(child: Image.asset(tick, height: 70)),
                 const SizedBox(height: 20),
-
-                // Title
-                const Text(
+                Text(
                   "Join Us Today",
-                  style: TextStyle(color: Appcolor.textwhite, fontSize: 28),
+                  style: GoogleFonts.outfit(
+                    color: Appcolor.textwhite,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
-
-                // Subtitle
-                const Text(
+                Text(
                   "Start managing your tasks efficiently and boost your productivity.",
-                  style: TextStyle(color: Appcolor.lghtwhite),
+                  style: GoogleFonts.outfit(
+                    color: Appcolor.lghtwhite,
+                    fontSize: 14,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 25),
-
-                // Input Fields
                 Column(
                   children: [
                     Textfield(
@@ -72,20 +67,13 @@ class Signup extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 20),
-
-                // Create Account Button
                 Custombutton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, Routes.home),
+                  onPressed: () => Navigator.pushNamed(context, Routes.home),
                   color: Appcolor.buttoncolor,
                   text: 'Create Account',
                 ),
-
                 const SizedBox(height: 25),
-
-                // Social Buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -95,7 +83,8 @@ class Signup extends StatelessWidget {
                         style: GoogleFonts.outfit(color: Appcolor.textwhite),
                       ),
                       image: RepaintBoundary(
-                          child: Image.asset(google, height: 20)),
+                        child: Image.asset(google, height: 20),
+                      ),
                     ),
                     const SizedBox(width: 20),
                     Custombutton2(
@@ -104,28 +93,29 @@ class Signup extends StatelessWidget {
                         style: GoogleFonts.outfit(color: Appcolor.textwhite),
                       ),
                       image: RepaintBoundary(
-                          child: Image.asset(ios, height: 20)),
+                        child: Image.asset(ios, height: 20),
+                      ),
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 25),
-
-                // Login link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Already have an account? ",
-                      style: TextStyle(color: Appcolor.textwhite),
+                      style: GoogleFonts.outfit(color: Appcolor.textwhite),
                     ),
                     InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, Routes.login);
                       },
-                      child: const Text(
+                      child: Text(
                         "Log In",
-                        style: TextStyle(color: Appcolor.textwhite),
+                        style: GoogleFonts.outfit(
+                          color: Appcolor.textwhite,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

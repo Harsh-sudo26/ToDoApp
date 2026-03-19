@@ -5,10 +5,11 @@ import 'package:todoapp/screen/login.dart';
 import 'package:todoapp/screen/signup.dart';
 import 'package:todoapp/screen/splash.dart';
 
+
 class AppPages {
   static Map<String, Widget Function(BuildContext)> routing = {
     Routes.splash: (context) => const Splash(),
-    Routes.home: (context) => const Homescreen(),
+    Routes.home: (context) => const Homescreen(), 
     Routes.login: (context) => const Login(),
     Routes.signup: (context) => const Signup(),
   };

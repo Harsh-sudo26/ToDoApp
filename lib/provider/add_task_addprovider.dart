@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import '../model/task_model.dart';
 
-class TaskProvider with ChangeNotifier {
-  final List<String> _tasks = [];
+class TaskProvider extends ChangeNotifier {
+  final List<taskin> _tasks = [];
 
-  List<String> get tasks => List.unmodifiable(_tasks); 
+  List<taskin> get tasks => _tasks;
 
-  void addTask(String task) {
-    _tasks.add(task);
+  void addTask(String title) {
+    _tasks.add(taskin(title: title,));
     notifyListeners();
   }
 
   void removeTask(int index) {
-    if (index >= 0 && index < _tasks.length) { 
-      _tasks.removeAt(index);
-      notifyListeners();
-    }
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
+
+  void toggleTask(int index) {
+    _tasks[index].isdone = !_tasks[index].isdone;
+    notifyListeners();
   }
 }

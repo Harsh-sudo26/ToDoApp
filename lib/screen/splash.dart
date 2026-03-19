@@ -69,7 +69,7 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    // Use LayoutBuilder to prevent layout overflow
+    
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
