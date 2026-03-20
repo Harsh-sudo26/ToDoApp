@@ -28,19 +28,19 @@ class ProgressCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Daily Progress",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   "You've completed $completed tasks today.\nKeep it up!",
-                  style: const TextStyle(
-                    color: Colors.white70,
+                  style:  TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -51,14 +51,14 @@ class ProgressCard extends StatelessWidget {
                     minHeight: 8,
                     backgroundColor: Colors.white30,
                     valueColor: const AlwaysStoppedAnimation<Color>(
-                      Color.fromARGB(255, 13, 216, 6),
+                      Color.fromARGB(255, 1, 255, 1),
                     ),
                   ),
                 ),
                 const SizedBox(height: 5),
                 Text(
                   "${(progress * 100).toInt()}%",
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
                 ),
               ],
             ),
@@ -74,16 +74,16 @@ class ProgressCard extends StatelessWidget {
                   value: progress,
                   strokeWidth: 8,
                   backgroundColor: Colors.white30,
-                  valueColor: const AlwaysStoppedAnimation<Color>(
-                    Color.fromARGB(255, 6, 249, 123),
+                  valueColor:  AlwaysStoppedAnimation<Color>(
+                    Color.fromARGB(255, 2, 248, 125),
                   ),
                 ),
               ),
               Text(
                 "$completed/$total",
-                style: const TextStyle(
+                style:  TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
                 ),
               ),
             ],

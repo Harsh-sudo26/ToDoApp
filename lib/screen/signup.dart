@@ -11,8 +11,9 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -27,7 +28,7 @@ class Signup extends StatelessWidget {
                 Text(
                   "Join Us Today",
                   style: GoogleFonts.outfit(
-                    color: Appcolor.textwhite,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
@@ -37,7 +38,7 @@ class Signup extends StatelessWidget {
                 Text(
                   "Start managing your tasks efficiently and boost your productivity.",
                   style: GoogleFonts.outfit(
-                    color: Appcolor.lghtwhite,
+                    color:Theme.of(context).textTheme.bodyLarge?.color,
                     fontSize: 14,
                   ),
                   textAlign: TextAlign.center,
@@ -46,21 +47,21 @@ class Signup extends StatelessWidget {
                 Column(
                   children: [
                     Textfield(
-                      icon: Icon(Icons.person, color: Appcolor.textwhite),
+                      icon: Icon(Icons.person, color: Theme.of(context).textTheme.bodyLarge?.color),
                       hinttext: 'Name',
                       rowtext: 'Name',
                       controller: TextEditingController(),
                     ),
                     const SizedBox(height: 10),
                     Textfield(
-                      icon: Icon(Icons.email, color: Appcolor.textwhite),
+                      icon: Icon(Icons.email, color: Theme.of(context).textTheme.bodyLarge?.color),
                       hinttext: 'name@example.com',
                       rowtext: 'Email Address',
                       controller: TextEditingController(),
                     ),
                     const SizedBox(height: 10),
                     Textfield(
-                      icon: Icon(Icons.password, color: Appcolor.textwhite),
+                      icon: Icon(Icons.password, color:Theme.of(context).textTheme.bodyLarge?.color),
                       hinttext: 'Password',
                       rowtext: 'Password',
                       controller: TextEditingController(),
@@ -80,7 +81,7 @@ class Signup extends StatelessWidget {
                     Custombutton2(
                       text: Text(
                         "Google",
-                        style: GoogleFonts.outfit(color: Appcolor.textwhite),
+                        style: GoogleFonts.outfit(color: Theme.of(context).textTheme.bodyLarge?.color),
                       ),
                       image: RepaintBoundary(
                         child: Image.asset(google, height: 20),
@@ -90,7 +91,7 @@ class Signup extends StatelessWidget {
                     Custombutton2(
                       text: Text(
                         "Apple",
-                        style: GoogleFonts.outfit(color: Appcolor.textwhite),
+                        style: GoogleFonts.outfit(color:Theme.of(context).textTheme.bodyLarge?.color),
                       ),
                       image: RepaintBoundary(
                         child: Image.asset(ios, height: 20),
@@ -104,7 +105,7 @@ class Signup extends StatelessWidget {
                   children: [
                     Text(
                       "Already have an account? ",
-                      style: GoogleFonts.outfit(color: Appcolor.textwhite),
+                      style: GoogleFonts.outfit(color:Theme.of(context).textTheme.bodyLarge?.color),
                     ),
                     InkWell(
                       onTap: () {
@@ -113,7 +114,7 @@ class Signup extends StatelessWidget {
                       child: Text(
                         "Log In",
                         style: GoogleFonts.outfit(
-                          color: Appcolor.textwhite,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

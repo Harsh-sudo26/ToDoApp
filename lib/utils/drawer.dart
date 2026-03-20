@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/screen/setting.dart';
+import 'package:todoapp/widget/smooth_page_route.dart';
 
+// ignore: camel_case_types
 class drawerwidget extends StatelessWidget {
   const drawerwidget({super.key, required Color backgroundColor, });
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-          backgroundColor: const Color.fromARGB(255, 233, 231, 231),
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           child: ListView(
             children: [
               const DrawerHeader(
@@ -33,7 +35,7 @@ class drawerwidget extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => const SettingPage()),
+                    SmoothPageRoute(page: SettingPage()),
                   );
                 },
               ),
