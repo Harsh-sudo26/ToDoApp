@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/constant/color/colors.dart';
-import 'package:todoapp/constant/image/image_const.dart'; // for 'google'
+import 'package:todoapp/constant/image/image_const.dart';
 import 'package:todoapp/provider/add_task_addprovider.dart';
+import 'package:todoapp/screen/setting.dart';
 import 'package:todoapp/utils/dialog.dart';
+import 'package:todoapp/widget/drawer.dart';
 import 'package:todoapp/widget/progresscard.dart';
 
 class Homescreen extends StatefulWidget {
@@ -19,30 +21,34 @@ class _HomescreenState extends State<Homescreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
+
+        drawer: drawerwidget(backgroundColor: Colors.white, ),
+
         appBar: AppBar(
           backgroundColor: Colors.black,
           elevation: 0,
-          leading: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              foregroundImage: AssetImage(google), // Google image
-              backgroundColor: Colors.transparent,
-            ),
+          iconTheme: const IconThemeData(
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
+
           title: const Text(
             "My Task",
             style: TextStyle(
               color: Appcolor.textwhite,
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              fontFamily: 'Roboto', 
+              fontFamily: 'Roboto',
             ),
           ),
           centerTitle: true,
-          actions: const [
-            IconButton(
-              onPressed: null,
-              icon: Icon(Icons.search, color: Colors.white),
+
+          actions: [
+            const Icon(Icons.search, color: Colors.white),
+            const SizedBox(width: 10),
+
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+             
             ),
           ],
         ),
@@ -66,24 +72,23 @@ class _HomescreenState extends State<Homescreen> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
-                    fontFamily: 'Roboto', // optional Google font
+                    fontFamily: 'Roboto',
                   ),
                 ),
               ),
 
-              // Progress Card
               Consumer<TaskProvider>(
                 builder: (context, taskProvider, child) {
                   final total = taskProvider.tasks.length;
-                  final completed =
-                      taskProvider.tasks.where((t) => t.isdone).length;
+                  final completed = taskProvider.tasks
+                      .where((t) => t.isdone)
+                      .length;
                   return ProgressCard(completed: completed, total: total);
                 },
               ),
 
               const SizedBox(height: 10),
 
-              // Task list
               Expanded(
                 child: Consumer<TaskProvider>(
                   builder: (context, taskProvider, child) {
@@ -95,7 +100,7 @@ class _HomescreenState extends State<Homescreen> {
                           "No task yet",
                           style: TextStyle(
                             color: Colors.white,
-                            fontFamily: 'Roboto', // optional Google font
+                            fontFamily: 'Roboto',
                           ),
                         ),
                       );
@@ -106,6 +111,7 @@ class _HomescreenState extends State<Homescreen> {
                       separatorBuilder: (_, _) => const SizedBox(height: 8),
                       itemBuilder: (context, index) {
                         final task = tasks[index];
+
                         return Container(
                           key: ValueKey(task.title),
                           decoration: BoxDecoration(
@@ -120,8 +126,7 @@ class _HomescreenState extends State<Homescreen> {
                           child: ListTile(
                             leading: Checkbox(
                               checkColor: Colors.white,
-                              fillColor:
-                                  WidgetStateProperty.resolveWith<Color>(
+                              fillColor: WidgetStateProperty.resolveWith<Color>(
                                 (states) {
                                   if (states.contains(WidgetState.selected)) {
                                     return Colors.green;
@@ -137,7 +142,7 @@ class _HomescreenState extends State<Homescreen> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Roboto', // optional Google font
+                                fontFamily: 'Roboto',
                                 decoration: task.isdone
                                     ? TextDecoration.lineThrough
                                     : null,

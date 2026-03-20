@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todoapp/constant/color/colors.dart';
 import 'package:todoapp/constant/image/image_const.dart';
 import 'package:todoapp/screen/homescreen.dart';
 import 'package:todoapp/screen/signup.dart';
@@ -18,7 +17,7 @@ class _SplashState extends State<Splash> {
   late TextStyle titleStyle;
   late TextStyle subtitleStyle;
   late TextStyle bodyStyle;
-  late TextStyle signupStyle;
+  late TextStyle signupstyle;
 
   @override
   void initState() {
@@ -54,17 +53,17 @@ class _SplashState extends State<Splash> {
       height: 1.5,
     );
 
-    signupStyle = GoogleFonts.bebasNeue(
-      fontSize: 22,
-      color: Appcolor.textwhite,
-      shadows: [
-        Shadow(
-          color: Colors.greenAccent.withOpacity(0.8),
-          blurRadius: 5,
-          offset: const Offset(0, 2),
-        ),
-      ],
-    );
+    signupstyle = GoogleFonts.oswald(
+  fontSize: 18,
+  color: Colors.white,
+  shadows: [
+    Shadow(
+      color: Colors.greenAccent.withOpacity(0.4),
+      blurRadius: 5,
+      offset: Offset(0, 2),
+    ),
+  ],
+);
   }
 
   @override
@@ -128,7 +127,7 @@ class _SplashState extends State<Splash> {
                           context,
                           SmoothPageRoute(page: const Signup()),
                         ),
-                        child: Text("Sign Up", style: signupStyle),
+                        child: Text("Sign Up", style:signupstyle ),
                       ),
                       const SizedBox(height: 20),
                     ],
